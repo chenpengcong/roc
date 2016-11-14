@@ -1,0 +1,33 @@
+h1 {
+    font-family: 'Satisfy';
+    font-size: 72px;
+}
+
+p, span {
+    font-family: 'Courgette';
+    font-size: 20px;
+}
+
+div {
+    text-align: center;
+}
+
+.top_padding {
+    margin-top: 100px;
+}
+
+.mid_padding {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.result_info {
+    display: none;
+    margin-top: 20px;
+}
+
+.cover-container {
+    background-image: url("/image/1000.png");
+    min-height: 800px;
+    background-size: cover;
+}

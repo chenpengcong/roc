@@ -1,2 +1,28 @@
 # roc
-The url shortener that implements the PSR standard.
+
+一个实现了PSR4-自动加载规范和PSR7-HTTP消息接口规范的短链接生成器。[DEMO](http://roc.pcong.cn/)
+
+后端纯原生PHP编写，不使用框架，目的是让自己动手去实现一个框架的基本功能,理解其中的难点和精华。因为自己对CI框架比较熟练，所以借鉴了CI的一些写法, 对PSR规范的实现也参考了其他优秀开源项目对其的实现。
+
+# 为什么写该项目
+
+因为我自己一直想动手去实现PSR规范,  碰巧看到一个[关于短链接生成问题](https://www.zhihu.com/question/29270034)，觉得蛮有趣，就想为何不实现PSR规范的同时去完成它呢, 于是该项目就这样诞生了.
+
+由于该项目没有用到文件上传功能, 所以PSR7规范中的UploadedFileInterface接口并未实现, 有时间我会继续实现并完善.
+
+# 短链接主要生成策略
+
+将用户输入的长url存储到数据库, 并返回其插入的id(int, 自增主键字段), 将id转成62进制, 该62进制数作为短url返回给用户.
+
+那么如何将短url还原呢, 可以将短url进行62进制到10进制的转换, 根据主键id字段从数据库查询得到.
+
+为了让同个长url尽可能生成相同的短url, 将长url到短url的映射关系存储到redis中, 每次优先从缓存中取, 但这样会损耗很多内存, 因为有些长url极少使用, 只生成一次短url, 所以对redis中的数据存储设置7200秒的过期时间，可以减少redis使用内存,虽然这样会出现同个长url生成不同短url，但这影响并不大.
+
+# 关于项目中的几个设计
+
+数据库中的long_url字段设置为varchar(2000)，将varchar长度设置为2000是因为url长度最佳长度是不超过2000(如果你想让你的url几乎适用所有浏览器) 
+
+详见：http://stackoverflow.com/questions/417142/what-is-the-maximum-length-of-a-url-in-different-browsers
+
+
+
