@@ -26,6 +26,15 @@ if (!function_exists('to10')) {
     }
 }
 
+if (!function_exists('baseUrl')) {
+    function baseUrl($path)
+    {
+        $scheme = isHttps() ? 'https': 'http';
+        $url = $scheme . '://' . $_SERVER['HTTP_HOST'] . $path;
+        return $url;
+    }
+}
+
 
 if (!function_exists('toBase')) {
     //10进制转$base进制

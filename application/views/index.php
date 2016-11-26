@@ -13,7 +13,7 @@
         <div class="col-md-12 mid_padding">
             <form id="url_form" method="POST">
             <div class="input-group">
-                <input type='url' name="long_url" class="form-control" placeholder="scheme://host/path">
+                <input type='url' name="long_url" class="form-control" placeholder="scheme://host/path" required>
                 <span class="input-group-btn">
                 <button id="shorten_btn" class="btn btn-default" type="submit">Shorten</button>
                 </span>  
