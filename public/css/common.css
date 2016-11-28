@@ -28,6 +28,8 @@ div {
 
 .cover-container {
     background-image: url("/image/1000.png");
-    min-height: 800px;
+    height: 100%;
+    width: 100%;
+    position: fixed;
     background-size: cover;
 }
